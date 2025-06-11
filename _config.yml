@@ -1,0 +1,41 @@
+title: "Enterprise AI Enablement Hub"
+description: "AI-powered development tools and best practices for enterprise teams"
+baseurl: ""
+url: "https://your-company.github.io/ai-enablement-hub"
+
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+collections:
+  prompts:
+    output: true
+    permalink: /:collection/:name/
+  workflows:
+    output: true
+    permalink: /:collection/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "prompts"
+    values:
+      layout: "prompt"
+  - scope:
+      path: ""
+      type: "workflows"  
+    values:
+      layout: "workflow"
+
+exclude:
+  - vendor/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - package.json
+  - package-lock.json

@@ -1,0 +1,155 @@
+{
+  "name": "enterprise-copilot-coach",
+  "displayName": "Enterprise Copilot Coach",
+  "description": "AI-powered development assistant with enterprise prompt library and live testing",
+  "version": "1.0.0",
+  "publisher": "your-company",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-company/ai-enablement-hub.git"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Snippets",
+    "Machine Learning"
+  ],
+  "keywords": [
+    "ai",
+    "copilot",
+    "prompt",
+    "enterprise",
+    "code-review",
+    "refactoring"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "enterprise.openPromptLibrary",
+        "title": "Open Prompt Library",
+        "category": "Enterprise AI"
+      },
+      {
+        "command": "enterprise.tryPrompt",
+        "title": "Try Prompt on Selection",
+        "category": "Enterprise AI"
+      },
+      {
+        "command": "enterprise.openAIPlayground",
+        "title": "Open AI Playground",
+        "category": "Enterprise AI"
+      },
+      {
+        "command": "enterprise.showMetrics",
+        "title": "Show AI Usage Metrics",
+        "category": "Enterprise AI"
+      },
+      {
+        "command": "enterprise.configureSettings",
+        "title": "Configure AI Settings",
+        "category": "Enterprise AI"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "enterprise.tryPrompt",
+          "group": "enterprise@1",
+          "when": "editorHasSelection"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "enterprise.openAIPlayground",
+          "when": "view == enterprise.promptLibrary",
+          "group": "navigation"
+        }
+      ]
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "enterprise.promptLibrary",
+          "name": "AI Prompt Library",
+          "when": "workspaceFolderCount > 0"
+        },
+        {
+          "id": "enterprise.aiMetrics",
+          "name": "AI Usage Metrics",
+          "when": "workspaceFolderCount > 0"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "enterprise.promptLibrary",
+        "contents": "🚀 Welcome to Enterprise AI!\n\nGet started with our curated prompt library.\n\n[Open Prompt Library](command:enterprise.openPromptLibrary)\n[Try AI Playground](command:enterprise.openAIPlayground)\n\nNeed help? Check out our [documentation](https://your-company.github.io/ai-enablement-hub/)."
+      }
+    ],
+    "configuration": {
+      "title": "Enterprise Copilot Coach",
+      "properties": {
+        "enterprise.aiProvider": {
+          "type": "string",
+          "default": "bedrock",
+          "enum": ["bedrock", "openai", "azure"],
+          "description": "AI provider to use for live testing"
+        },
+        "enterprise.bedrockRegion": {
+          "type": "string",
+          "default": "us-east-1",
+          "description": "AWS Bedrock region"
+        },
+        "enterprise.modelId": {
+          "type": "string",
+          "default": "anthropic.claude-3-sonnet-20240229-v1:0",
+          "description": "Model ID for AI completions"
+        },
+        "enterprise.enableMetrics": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable usage metrics collection"
+        },
+        "enterprise.promptLibraryUrl": {
+          "type": "string",
+          "default": "https://your-company.github.io/ai-enablement-hub/prompts.json",
+          "description": "URL to fetch prompt library updates"
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/typescript.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "18.x",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.484.0",
+    "axios": "^1.6.2"
+  }
+}

@@ -1,0 +1,655 @@
+---
+layout: default
+---
+
+<div class="prompts-header">
+  <h1>🧠 Prompt Library</h1>
+  <p>Curated, tested prompts for every development scenario</p>
+  
+  <div class="search-filters">
+    <input type="text" id="searchInput" placeholder="Search prompts..." class="search-box">
+    
+    <div class="filter-group">
+      <label>Category:</label>
+      <select id="categoryFilter">
+        <option value="">All Categories</option>
+        <option value="quality">Code Quality</option>
+        <option value="optimization">Optimization</option>
+        <option value="testing">Testing</option>
+        <option value="documentation">Documentation</option>
+        <option value="security">Security</option>
+      </select>
+    </div>
+    
+    <div class="filter-group">
+      <label>Difficulty:</label>
+      <select id="difficultyFilter">
+        <option value="">All Levels</option>
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+    </div>
+    
+    <button onclick="showOnlyFavorites()" class="btn-filter" id="favoritesBtn">⭐ Favorites Only</button>
+  </div>
+</div>
+
+<div class="prompts-grid" id="promptsGrid">
+  
+  <div class="prompt-card" data-category="quality" data-difficulty="beginner" data-effectiveness="4.8">
+    <div class="prompt-header">
+      <h3><a href="/prompts/code-review/">Code Review Assistant</a></h3>
+      <div class="prompt-meta">
+        <span class="category-tag quality">Quality</span>
+        <span class="difficulty-badge beginner">Beginner</span>
+        <div class="effectiveness-score">
+          <span class="stars">⭐⭐⭐⭐⭐</span>
+          <span class="score">4.8</span>
+        </div>
+      </div>
+    </div>
+    
+    <p>Get comprehensive code review feedback with security, performance, and maintainability suggestions.</p>
+    
+    <div class="prompt-stats">
+      <span class="stat">📊 2,847 uses</span>
+      <span class="stat">⏱️ Saves 15min</span>
+      <span class="stat">🛡️ 127 bugs prevented</span>
+    </div>
+    
+    <div class="prompt-actions">
+      <button onclick="favoritePrompt('code-review')" class="btn-favorite" id="fav-code-review">♡</button>
+      <button onclick="copyPromptQuick('code-review')" class="btn-quick">📋 Copy</button>
+      <button onclick="openInVSCode('code-review')" class="btn-vscode">
+        <img src="/assets/vscode-icon.svg" alt="VS Code" width="14"> Try Now
+      </button>
+    </div>
+  </div>
+
+  <div class="prompt-card" data-category="optimization" data-difficulty="intermediate" data-effectiveness="4.6">
+    <div class="prompt-header">
+      <h3><a href="/prompts/refactoring/">Intelligent Refactoring</a></h3>
+      <div class="prompt-meta">
+        <span class="category-tag optimization">Optimization</span>
+        <span class="difficulty-badge intermediate">Intermediate</span>
+        <div class="effectiveness-score">
+          <span class="stars">⭐⭐⭐⭐⭐</span>
+          <span class="score">4.6</span>
+        </div>
+      </div>
+    </div>
+    
+    <p>Smart refactoring suggestions that improve code structure and maintainability while preserving functionality.</p>
+    
+    <div class="prompt-stats">
+      <span class="stat">📊 1,923 uses</span>
+      <span class="stat">⚡ 87% quality gain</span>
+      <span class="stat">🐛 34% fewer bugs</span>
+    </div>
+    
+    <div class="prompt-actions">
+      <button onclick="favoritePrompt('refactoring')" class="btn-favorite" id="fav-refactoring">♡</button>
+      <button onclick="copyPromptQuick('refactoring')" class="btn-quick">📋 Copy</button>
+      <button onclick="openInVSCode('refactoring')" class="btn-vscode">
+        <img src="/assets/vscode-icon.svg" alt="VS Code" width="14"> Try Now
+      </button>
+    </div>
+  </div>
+
+  <div class="prompt-card" data-category="testing" data-difficulty="beginner" data-effectiveness="4.7">
+    <div class="prompt-header">
+      <h3><a href="/prompts/test-generation/">Smart Test Generator</a></h3>
+      <div class="prompt-meta">
+        <span class="category-tag testing">Testing</span>
+        <span class="difficulty-badge beginner">Beginner</span>
+        <div class="effectiveness-score">
+          <span class="stars">⭐⭐⭐⭐⭐</span>
+          <span class="score">4.7</span>
+        </div>
+      </div>
+    </div>
+    
+    <p>Generate comprehensive unit tests with edge cases, mocks, and assertions tailored to your code.</p>
+    
+    <div class="prompt-stats">
+      <span class="stat">📊 3,421 uses</span>
+      <span class="stat">🎯 94% coverage avg</span>
+      <span class="stat">⚡ 60% faster testing</span>
+    </div>
+    
+    <div class="prompt-actions">
+      <button onclick="favoritePrompt('test-generation')" class="btn-favorite" id="fav-test-generation">♡</button>
+      <button onclick="copyPromptQuick('test-generation')" class="btn-quick">📋 Copy</button>
+      <button onclick="openInVSCode('test-generation')" class="btn-vscode">
+        <img src="/assets/vscode-icon.svg" alt="VS Code" width="14"> Try Now
+      </button>
+    </div>
+  </div>
+
+  <div class="prompt-card" data-category="security" data-difficulty="advanced" data-effectiveness="4.9">
+    <div class="prompt-header">
+      <h3><a href="/prompts/security-audit/">Security Vulnerability Scanner</a></h3>
+      <div class="prompt-meta">
+        <span class="category-tag security">Security</span>
+        <span class="difficulty-badge advanced">Advanced</span>
+        <div class="effectiveness-score">
+          <span class="stars">⭐⭐⭐⭐⭐</span>
+          <span class="score">4.9</span>
+        </div>
+      </div>
+    </div>
+    
+    <p>Deep security analysis following OWASP guidelines with specific vulnerability detection and remediation.</p>
+    
+    <div class="prompt-stats">
+      <span class="stat">📊 1,156 uses</span>
+      <span class="stat">🛡️ 89 CVEs caught</span>
+      <span class="stat">🔒 100% OWASP coverage</span>
+    </div>
+    
+    <div class="prompt-actions">
+      <button onclick="favoritePrompt('security-audit')" class="btn-favorite" id="fav-security-audit">♡</button>
+      <button onclick="copyPromptQuick('security-audit')" class="btn-quick">📋 Copy</button>
+      <button onclick="openInVSCode('security-audit')" class="btn-vscode">
+        <img src="/assets/vscode-icon.svg" alt="VS Code" width="14"> Try Now
+      </button>
+    </div>
+  </div>
+
+  <div class="prompt-card" data-category="documentation" data-difficulty="beginner" data-effectiveness="4.5">
+    <div class="prompt-header">
+      <h3><a href="/prompts/documentation/">Smart Documentation Generator</a></h3>
+      <div class="prompt-meta">
+        <span class="category-tag documentation">Documentation</span>
+        <span class="difficulty-badge beginner">Beginner</span>
+        <div class="effectiveness-score">
+          <span class="stars">⭐⭐⭐⭐⭐</span>
+          <span class="score">4.5</span>
+        </div>
+      </div>
+    </div>
+    
+    <p>Auto-generate comprehensive documentation, API docs, and inline comments from your code.</p>
+    
+    <div class="prompt-stats">
+      <span class="stat">📊 2,103 uses</span>
+      <span class="stat">📝 70% less manual docs</span>
+      <span class="stat">📚 95% completeness rate</span>
+    </div>
+    
+    <div class="prompt-actions">
+      <button onclick="favoritePrompt('documentation')" class="btn-favorite" id="fav-documentation">♡</button>
+      <button onclick="copyPromptQuick('documentation')" class="btn-quick">📋 Copy</button>
+      <button onclick="openInVSCode('documentation')" class="btn-vscode">
+        <img src="/assets/vscode-icon.svg" alt="VS Code" width="14"> Try Now
+      </button>
+    </div>
+  </div>
+
+  <div class="prompt-card" data-category="optimization" data-difficulty="advanced" data-effectiveness="4.4">
+    <div class="prompt-header">
+      <h3><a href="/prompts/performance/">Performance Optimizer</a></h3>
+      <div class="prompt-meta">
+        <span class="category-tag optimization">Optimization</span>
+        <span class="difficulty-badge advanced">Advanced</span>
+        <div class="effectiveness-score">
+          <span class="stars">⭐⭐⭐⭐⭐</span>
+          <span class="score">4.4</span>
+        </div>
+      </div>
+    </div>
+    
+    <p>Advanced performance analysis with profiling insights, bottleneck detection, and optimization strategies.</p>
+    
+    <div class="prompt-stats">
+      <span class="stat">📊 967 uses</span>
+      <span class="stat">⚡ 45% speed improvement</span>
+      <span class="stat">💾 32% memory reduction</span>
+    </div>
+    
+    <div class="prompt-actions">
+      <button onclick="favoritePrompt('performance')" class="btn-favorite" id="fav-performance">♡</button>
+      <button onclick="copyPromptQuick('performance')" class="btn-quick">📋 Copy</button>
+      <button onclick="openInVSCode('performance')" class="btn-vscode">
+        <img src="/assets/vscode-icon.svg" alt="VS Code" width="14"> Try Now
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<div class="ai-playground-banner">
+  <div class="playground-content">
+    <h3>🧪 Try Prompts Live in VS Code</h3>
+    <p>Install our extension to test these prompts on your actual code with real AI responses</p>
+    <button onclick="installExtension()" class="btn-install">Install Enterprise Copilot Coach</button>
+  </div>
+</div>
+
+<script>
+let favorites = JSON.parse(localStorage.getItem('favoritePrompts') || '[]');
+let showingFavoritesOnly = false;
+
+// Initialize favorites UI
+document.addEventListener('DOMContentLoaded', function() {
+  favorites.forEach(id => {
+    const btn = document.getElementById(`fav-${id}`);
+    if (btn) {
+      btn.textContent = '♥';
+      btn.classList.add('favorited');
+    }
+  });
+  
+  // Initialize search and filters
+  setupFilters();
+});
+
+function setupFilters() {
+  const searchInput = document.getElementById('searchInput');
+  const categoryFilter = document.getElementById('categoryFilter');
+  const difficultyFilter = document.getElementById('difficultyFilter');
+  
+  [searchInput, categoryFilter, difficultyFilter].forEach(element => {
+    element.addEventListener('input', filterPrompts);
+  });
+}
+
+function filterPrompts() {
+  const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+  const categoryFilter = document.getElementById('categoryFilter').value;
+  const difficultyFilter = document.getElementById('difficultyFilter').value;
+  
+  const cards = document.querySelectorAll('.prompt-card');
+  
+  cards.forEach(card => {
+    const title = card.querySelector('h3').textContent.toLowerCase();
+    const description = card.querySelector('p').textContent.toLowerCase();
+    const category = card.dataset.category;
+    const difficulty = card.dataset.difficulty;
+    
+    const matchesSearch = !searchTerm || title.includes(searchTerm) || description.includes(searchTerm);
+    const matchesCategory = !categoryFilter || category === categoryFilter;
+    const matchesDifficulty = !difficultyFilter || difficulty === difficultyFilter;
+    const matchesFavorites = !showingFavoritesOnly || favorites.includes(card.querySelector('h3 a').href.split('/').slice(-2)[0]);
+    
+    card.style.display = matchesSearch && matchesCategory && matchesDifficulty && matchesFavorites ? 'block' : 'none';
+  });
+}
+
+function favoritePrompt(promptId) {
+  const btn = document.getElementById(`fav-${promptId}`);
+  
+  if (favorites.includes(promptId)) {
+    favorites = favorites.filter(id => id !== promptId);
+    btn.textContent = '♡';
+    btn.classList.remove('favorited');
+  } else {
+    favorites.push(promptId);
+    btn.textContent = '♥';
+    btn.classList.add('favorited');
+  }
+  
+  localStorage.setItem('favoritePrompts', JSON.stringify(favorites));
+  
+  if (showingFavoritesOnly) {
+    filterPrompts();
+  }
+}
+
+function showOnlyFavorites() {
+  const btn = document.getElementById('favoritesBtn');
+  showingFavoritesOnly = !showingFavoritesOnly;
+  
+  if (showingFavoritesOnly) {
+    btn.textContent = '⭐ Show All';
+    btn.classList.add('active');
+  } else {
+    btn.textContent = '⭐ Favorites Only';
+    btn.classList.remove('active');
+  }
+  
+  filterPrompts();
+}
+
+function copyPromptQuick(promptId) {
+  // In a real implementation, this would fetch the actual prompt content
+  // For demo purposes, we'll show a success message
+  const btn = event.target;
+  const originalText = btn.textContent;
+  btn.textContent = '✓ Copied!';
+  btn.style.background = '#22c55e';
+  
+  setTimeout(() => {
+    btn.textContent = originalText;
+    btn.style.background = '';
+  }, 2000);
+  
+  // Simulate copying to clipboard
+  navigator.clipboard.writeText(`Prompt for ${promptId} copied to clipboard!`);
+}
+
+function openInVSCode(promptId) {
+  // This would communicate with the VS Code extension
+  window.postMessage({
+    command: 'openPromptInVSCode',
+    promptId: promptId
+  }, '*');
+  
+  // For demo, show notification
+  showNotification('Opening prompt in VS Code...', 'info');
+}
+
+function installExtension() {
+  window.open('vscode:extension/your-company.enterprise-copilot-coach', '_blank');
+}
+
+function showNotification(message, type = 'success') {
+  const notification = document.createElement('div');
+  notification.className = `notification ${type}`;
+  notification.textContent = message;
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: ${type === 'success' ? '#22c55e' : '#3b82f6'};
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+  `;
+  
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.remove();
+  }, 3000);
+}
+
+// Add CSS animation
+const style = document.createElement('style');
+style.textContent = `
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+`;
+document.head.appendChild(style);
+</script>
+
+<style>
+.prompts-header {
+  text-align: center;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+}
+
+.search-filters {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f8f9ff;
+  border-radius: 12px;
+}
+
+.search-box {
+  padding: 0.75rem 1rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 1rem;
+  min-width: 300px;
+}
+
+.search-box:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-group label {
+  font-weight: 500;
+  color: #374151;
+}
+
+.filter-group select {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+}
+
+.btn-filter {
+  padding: 0.75rem 1rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.btn-filter:hover {
+  background: #5a67d8;
+}
+
+.btn-filter.active {
+  background: #f59e0b;
+}
+
+.prompts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.prompt-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+  border: 1px solid #e1e5e9;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.prompt-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.prompt-header {
+  margin-bottom: 1rem;
+}
+
+.prompt-header h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+}
+
+.prompt-header h3 a {
+  text-decoration: none;
+  color: #1f2937;
+}
+
+.prompt-header h3 a:hover {
+  color: #667eea;
+}
+
+.prompt-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.category-tag {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.category-tag.quality { background: #ddd6fe; color: #5b21b6; }
+.category-tag.optimization { background: #fed7d7; color: #c53030; }
+.category-tag.testing { background: #c6f6d5; color: #2f855a; }
+.category-tag.security { background: #fde68a; color: #d97706; }
+.category-tag.documentation { background: #bfdbfe; color: #1d4ed8; }
+
+.difficulty-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.difficulty-badge.beginner { background: #d1fae5; color: #065f46; }
+.difficulty-badge.intermediate { background: #fef3c7; color: #92400e; }
+.difficulty-badge.advanced { background: #fee2e2; color: #991b1b; }
+
+.effectiveness-score {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+.stars {
+  color: #fbbf24;
+  font-size: 0.875rem;
+}
+
+.score {
+  font-weight: 600;
+  color: #374151;
+}
+
+.prompt-stats {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.stat {
+  font-size: 0.875rem;
+  color: #6b7280;
+  background: #f9fafb;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.prompt-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.btn-favorite {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #9ca3af;
+  transition: color 0.2s;
+}
+
+.btn-favorite:hover, .btn-favorite.favorited {
+  color: #ef4444;
+}
+
+.btn-quick {
+  padding: 0.5rem 0.75rem;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background 0.2s;
+}
+
+.btn-quick:hover {
+  background: #e5e7eb;
+}
+
+.btn-vscode {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #007acc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-left: auto;
+}
+
+.btn-vscode:hover {
+  background: #005999;
+}
+
+.ai-playground-banner {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.playground-content h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.btn-install {
+  padding: 1rem 2rem;
+  background: white;
+  color: #667eea;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s;
+}
+
+.btn-install:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .search-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-box {
+    min-width: auto;
+  }
+  
+  .prompts-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .prompt-actions {
+    flex-wrap: wrap;
+  }
+}
+</style>

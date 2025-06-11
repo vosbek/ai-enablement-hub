@@ -1,0 +1,41 @@
+Enterprise License Agreement
+
+Copyright (c) 2024 [Your Company Name]
+
+INTERNAL USE ONLY
+
+This software and associated documentation files (the "Software") are the 
+proprietary property of [Your Company Name] and are licensed for internal 
+use only by employees and authorized contractors of [Your Company Name].
+
+PERMITTED USES:
+- Use within [Your Company Name] for business purposes
+- Modification and enhancement for internal needs
+- Distribution within [Your Company Name] network and systems
+- Creation of derivative works for internal use
+
+RESTRICTIONS:
+- No external distribution or sharing outside [Your Company Name]
+- No commercial licensing to third parties
+- No open source release without explicit written permission
+- No reverse engineering for competitive purposes
+
+LIABILITY:
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+COMPLIANCE:
+This software may contain or utilize third-party components. Users are 
+responsible for ensuring compliance with all applicable licenses and 
+regulations, including but not limited to:
+- AWS Bedrock Terms of Service
+- Anthropic Claude Usage Policies  
+- Microsoft VS Code Extension Guidelines
+- Company data privacy and security policies
+
+For questions regarding this license, contact: legal@company.com

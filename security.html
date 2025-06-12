@@ -1,0 +1,404 @@
+---
+layout: default
+---
+
+<div class="security-header">
+  <h1>🛡️ AI Security Guidelines</h1>
+  <p>Best practices for safe AI usage in enterprise environments</p>
+</div>
+
+<div class="security-content">
+  
+  <div class="guideline-section">
+    <h2>🔒 Data Protection</h2>
+    <div class="guidelines-grid">
+      <div class="guideline-card">
+        <h4>Never Include Sensitive Data</h4>
+        <ul>
+          <li>No API keys, passwords, or credentials</li>
+          <li>No customer personal information (PII)</li>
+          <li>No proprietary business logic details</li>
+          <li>No internal system configurations</li>
+        </ul>
+      </div>
+      
+      <div class="guideline-card">
+        <h4>Use Placeholder Data</h4>
+        <ul>
+          <li>Replace real values with examples</li>
+          <li>Use generic variable names</li>
+          <li>Anonymize any code snippets</li>
+          <li>Remove company-specific identifiers</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="guideline-section">
+    <h2>🚫 What NOT to Share</h2>
+    <div class="danger-items">
+      <div class="danger-item">
+        <span class="danger-icon">⚠️</span>
+        <span>Database connection strings</span>
+      </div>
+      <div class="danger-item">
+        <span class="danger-icon">⚠️</span>
+        <span>Authentication tokens or certificates</span>
+      </div>
+      <div class="danger-item">
+        <span class="danger-icon">⚠️</span>
+        <span>Customer data or personal information</span>
+      </div>
+      <div class="danger-item">
+        <span class="danger-icon">⚠️</span>
+        <span>Proprietary algorithms or business logic</span>
+      </div>
+      <div class="danger-item">
+        <span class="danger-icon">⚠️</span>
+        <span>Internal infrastructure details</span>
+      </div>
+      <div class="danger-item">
+        <span class="danger-icon">⚠️</span>
+        <span>Security vulnerabilities or exploits</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="guideline-section">
+    <h2>✅ Safe Practices</h2>
+    <div class="safe-practices">
+      <div class="practice-item">
+        <div class="practice-icon">🔍</div>
+        <div class="practice-content">
+          <h4>Code Review Assistance</h4>
+          <p>Share generic code patterns for review, removing any company-specific details or sensitive logic.</p>
+        </div>
+      </div>
+      
+      <div class="practice-item">
+        <div class="practice-icon">📝</div>
+        <div class="practice-content">
+          <h4>Documentation Help</h4>
+          <p>Generate documentation templates and improve code comments without exposing internal details.</p>
+        </div>
+      </div>
+      
+      <div class="practice-item">
+        <div class="practice-icon">🧪</div>
+        <div class="practice-content">
+          <h4>Test Generation</h4>
+          <p>Create test cases for public functions and APIs using anonymized example data.</p>
+        </div>
+      </div>
+      
+      <div class="practice-item">
+        <div class="practice-icon">🏗️</div>
+        <div class="practice-content">
+          <h4>Architecture Guidance</h4>
+          <p>Discuss general architecture patterns and best practices without revealing system specifics.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guideline-section">
+    <h2>🔧 Technical Safeguards</h2>
+    <div class="safeguards-grid">
+      <div class="safeguard-card">
+        <h4>Extension Settings</h4>
+        <ul>
+          <li>Use enterprise-approved AI providers only</li>
+          <li>Configure data retention policies</li>
+          <li>Enable audit logging</li>
+          <li>Set up content filtering</li>
+        </ul>
+      </div>
+      
+      <div class="safeguard-card">
+        <h4>Network Security</h4>
+        <ul>
+          <li>All AI requests go through corporate VPN</li>
+          <li>Encrypted connections (TLS 1.3+)</li>
+          <li>Traffic monitoring and logging</li>
+          <li>Geo-restricted AI service access</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="compliance-section">
+    <h2>📋 Compliance Requirements</h2>
+    <div class="compliance-grid">
+      <div class="compliance-item">
+        <h4>GDPR Compliance</h4>
+        <p>No personal data processing without explicit consent. All AI interactions must be auditable and deletable.</p>
+      </div>
+      
+      <div class="compliance-item">
+        <h4>SOX Compliance</h4>
+        <p>Financial data and reporting code requires additional review and cannot be shared with external AI services.</p>
+      </div>
+      
+      <div class="compliance-item">
+        <h4>Industry Standards</h4>
+        <p>Follow sector-specific regulations (HIPAA, PCI-DSS, etc.) when handling regulated code or data.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="incident-response">
+    <h2>🚨 Incident Response</h2>
+    <div class="incident-steps">
+      <div class="incident-step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>Immediate Action</h4>
+          <p>If sensitive data was accidentally shared, immediately stop the AI session and report to security team.</p>
+        </div>
+      </div>
+      
+      <div class="incident-step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>Report Incident</h4>
+          <p>Contact security@company.com with details of what was shared and when.</p>
+        </div>
+      </div>
+      
+      <div class="incident-step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>Follow Up</h4>
+          <p>Work with security team to assess impact and implement additional safeguards if needed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+.security-header {
+  text-align: center;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+}
+
+.security-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.guideline-section {
+  margin-bottom: 3rem;
+}
+
+.guideline-section h2 {
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.guidelines-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.guideline-card {
+  background: white;
+  border: 1px solid #e1e5e9;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.guideline-card h4 {
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.guideline-card ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #6b7280;
+}
+
+.guideline-card li {
+  margin-bottom: 0.5rem;
+}
+
+.danger-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.danger-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  color: #991b1b;
+}
+
+.danger-icon {
+  font-size: 1.25rem;
+}
+
+.safe-practices {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.practice-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+}
+
+.practice-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.practice-content h4 {
+  margin: 0 0 0.5rem 0;
+  color: #1f2937;
+}
+
+.practice-content p {
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.safeguards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.safeguard-card {
+  background: #fffbeb;
+  border: 1px solid #fed7aa;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.safeguard-card h4 {
+  color: #92400e;
+  margin-bottom: 1rem;
+}
+
+.safeguard-card ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #78350f;
+}
+
+.safeguard-card li {
+  margin-bottom: 0.5rem;
+}
+
+.compliance-section {
+  background: #f8fafc;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 3rem;
+}
+
+.compliance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.compliance-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.compliance-item h4 {
+  color: #1e293b;
+  margin-bottom: 0.75rem;
+}
+
+.compliance-item p {
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.incident-response {
+  background: #fef2f2;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #fecaca;
+}
+
+.incident-response h2 {
+  color: #991b1b;
+  border-bottom-color: #fecaca;
+}
+
+.incident-steps {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.incident-step {
+  display: flex;
+  gap: 1rem;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.step-number {
+  background: #dc2626;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.step-content h4 {
+  margin: 0 0 0.5rem 0;
+  color: #1f2937;
+}
+
+.step-content p {
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .guidelines-grid,
+  .safeguards-grid,
+  .compliance-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .danger-items {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

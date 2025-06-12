@@ -8,15 +8,15 @@ layout: default
   
   <div class="stats-bar">
     <div class="stat">
-      <span class="stat-number">1000+</span>
+      <span class="stat-number">25+</span>
       <span class="stat-label">Developers</span>
     </div>
     <div class="stat">
-      <span class="stat-number">50+</span>
+      <span class="stat-number">5+</span>
       <span class="stat-label">Teams</span>
     </div>
     <div class="stat">
-      <span class="stat-number">40%</span>
+      <span class="stat-number">15%</span>
       <span class="stat-label">Productivity Gain</span>
     </div>
   </div>
@@ -29,7 +29,7 @@ layout: default
       <div class="feature-icon">💡</div>
       <h3>Interactive Prompt Library</h3>
       <p>Curated, tested prompts for every development scenario. Try them live in VS Code!</p>
-      <a href="/prompts/" class="btn btn-primary">Explore Prompts</a>
+      <a href="{{ '/prompts.html' | relative_url }}" class="btn btn-primary">Explore Prompts</a>
       <div class="vscode-link">
         <button onclick="openInVSCode('prompts')" class="btn-vscode">
           <img src="assets/vscode-icon.svg" alt="VS Code" width="16"> Try in VS Code
@@ -41,21 +41,21 @@ layout: default
       <div class="feature-icon">⚡</div>
       <h3>Workflow Templates</h3>
       <p>Step-by-step guides for common development tasks with AI assistance.</p>
-      <a href="/workflows/" class="btn">View Workflows</a>
+      <a href="{{ '/workflows.html' | relative_url }}" class="btn">View Workflows</a>
     </div>
 
     <div class="feature-card">
       <div class="feature-icon">📊</div>
       <h3>Quality Gates & Metrics</h3>
       <p>Track AI adoption, code quality improvements, and team productivity.</p>
-      <a href="/metrics/" class="btn">View Dashboard</a>
+      <a href="{{ '/metrics.html' | relative_url }}" class="btn">View Dashboard</a>
     </div>
 
     <div class="feature-card">
       <div class="feature-icon">🛡️</div>
       <h3>Security Guidelines</h3>
       <p>Best practices for safe AI usage in enterprise environments.</p>
-      <a href="/security/" class="btn">Learn More</a>
+      <a href="{{ '/security.html' | relative_url }}" class="btn">Learn More</a>
     </div>
 
   </div>
@@ -78,7 +78,7 @@ layout: default
       <div class="step-content">
         <h4>Try a Prompt</h4>
         <p>Browse our library and test prompts on real code</p>
-        <a href="/prompts/code-review/" class="btn-small">Start with Code Review</a>
+        <a href="{{ '/prompts.html' | relative_url }}" class="btn-small">Start with Code Review</a>
       </div>
     </div>
     

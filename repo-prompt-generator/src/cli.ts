@@ -63,7 +63,37 @@ program
       // Generate prompts
       spinner.text = 'Generating custom prompts from your codebase...';
       const generator = new PromptGenerator(analysis);
-      const promptLibrary = generator.generatePromptLibrary();
+      let promptLibrary = generator.generatePromptLibrary();
+
+      // Generate sub-prompts for complex workflows
+      if (options.verbose) {
+        spinner.text = 'Generating sub-prompts for complex workflows...';
+        const subPromptGenerator = new SubPromptGenerator(analysis);
+        
+        promptLibrary.prompts = promptLibrary.prompts.map(prompt => {
+          if (prompt.complexity === 'advanced' || prompt.phase === 'workflow' || prompt.phase === 'incident-response') {
+            prompt.subPrompts = subPromptGenerator.generateSubPrompts(prompt);
+          }
+          return prompt;
+        });
+      }
+
+      // Validate prompts and optimize if needed
+      if (options.verbose) {
+        spinner.text = 'Validating and optimizing prompts...';
+        const validator = new PromptValidator(analysis);
+        const validation = validator.validatePromptLibrary(promptLibrary.prompts);
+        
+        // Add validation results to prompts
+        promptLibrary.prompts = promptLibrary.prompts.map(prompt => {
+          prompt.validation = validation.promptValidations[prompt.id];
+          return prompt;
+        });
+
+        // Add validation summary to metadata
+        (promptLibrary.metadata as any).validationScore = Math.round(validation.overallScore);
+        (promptLibrary.metadata as any).validationRecommendations = validation.recommendations;
+      }
 
       // Generate output
       spinner.text = `Generating ${options.format} output...`;
@@ -151,6 +181,63 @@ program
   });
 
 program
+  .command('generate-rules')
+  .description('Generate governance rule files and configurations')
+  .argument('<path>', 'Path to repository')
+  .option('-t, --type <types>', 'Rule types to generate (comma-separated): eslint,security,accessibility,compliance', 'eslint,security,accessibility,compliance')
+  .option('-o, --output-dir <dir>', 'Output directory for rule files', '.')
+  .action(async (repoPath: string, options: any) => {
+    const spinner = ora('Analyzing repository for rule generation...').start();
+    
+    try {
+      if (!await fs.pathExists(repoPath)) {
+        throw new Error(`Repository path does not exist: ${repoPath}`);
+      }
+
+      const governanceAnalyzer = new GovernanceAnalyzer(repoPath);
+      const ruleFiles = await governanceAnalyzer.generateRuleFiles();
+      
+      const ruleTypes = options.type.split(',').map((t: string) => t.trim());
+      const outputDir = path.resolve(options.outputDir);
+      
+      await fs.ensureDir(outputDir);
+      
+      let generatedCount = 0;
+      
+      for (const [filename, content] of Object.entries(ruleFiles)) {
+        const ruleType = filename.includes('eslint') ? 'eslint' : 
+                        filename.includes('security') ? 'security' :
+                        filename.includes('a11y') ? 'accessibility' :
+                        filename.includes('COMPLIANCE') ? 'compliance' : 'other';
+        
+        if (ruleTypes.includes(ruleType) || ruleTypes.includes('all')) {
+          const outputPath = path.join(outputDir, filename);
+          await fs.ensureDir(path.dirname(outputPath));
+          await fs.writeFile(outputPath, content);
+          generatedCount++;
+          
+          console.log(chalk.green(`✓ Generated: ${filename}`));
+        }
+      }
+      
+      spinner.succeed(`Generated ${generatedCount} rule files`);
+      
+      console.log(chalk.blue('\n📋 Generated Rule Files:'));
+      console.log(`   Output Directory: ${chalk.white(outputDir)}`);
+      console.log(`   Files Created: ${chalk.white(generatedCount)}`);
+      console.log(chalk.green('\n💡 Next Steps:'));
+      console.log('   1. Review and customize the generated rule files');
+      console.log('   2. Install required dependencies (ESLint, security tools, etc.)');
+      console.log('   3. Integrate rules into your CI/CD pipeline');
+      console.log('   4. Train your team on the new standards');
+      
+    } catch (error) {
+      spinner.fail(`Rule generation failed: ${error.message}`);
+      process.exit(1);
+    }
+  });
+
+program
   .command('examples')
   .description('Show example usage and templates')
   .action(() => {
@@ -171,14 +258,35 @@ program
     console.log('  rpg analyze . --max-file-size 500         # Limit file size (KB)');
     console.log('  rpg analyze . --include-node-modules       # Include dependencies\n');
     
+    console.log(chalk.yellow('Enterprise Features:'));
+    console.log('  rpg analyze . --verbose                    # Include sub-prompts and validation');
+    console.log('  rpg generate-rules ./my-project            # Generate governance rule files');
+    console.log('  rpg generate-rules . --type eslint,security # Generate specific rule types\n');
+    
     console.log(chalk.yellow('Example Generated Prompts:'));
-    console.log('• Feature Planning for Your React App');
-    console.log('• Implement Component Following Your Patterns');
-    console.log('• Write Tests Following Your Testing Style');
-    console.log('• Code Review Based on Your Standards');
-    console.log('• API Design Following Your Architecture\n');
+    console.log('📝 Development:');
+    console.log('  • Feature Planning for Your React App');
+    console.log('  • Implement Component Following Your Patterns');
+    console.log('  • Write Tests Following Your Testing Style');
+    console.log('\n🏢 Enterprise Workflows:');
+    console.log('  • CI/CD Pipeline Optimization Analysis');
+    console.log('  • Incident Response Plan Development');
+    console.log('  • Business Opportunity & Feature Analysis');
+    console.log('  • Compliance Assessment & Gap Analysis');
+    console.log('  • Dependency Security & Health Analysis\n');
+    
+    console.log(chalk.yellow('Sub-Prompts (Verbose Mode):'));
+    console.log('  • Complex prompts broken into step-by-step workflows');
+    console.log('  • Prerequisite tracking and output validation');
+    console.log('  • Estimated time and resource requirements\n');
+    
+    console.log(chalk.yellow('Prompt Validation (Verbose Mode):'));
+    console.log('  • Clarity, completeness, and actionability scoring');
+    console.log('  • Automatic prompt optimization suggestions');
+    console.log('  • Project-specific context validation\n');
     
     console.log(chalk.green('💡 Tip: The generated prompts include real examples from YOUR codebase!'));
+    console.log(chalk.cyan('🚀 Use --verbose for advanced features like sub-prompts and validation!'));
   });
 
 async function validateInputs(repoPath: string, options: any): Promise<void> {
@@ -230,6 +338,15 @@ function displayResults(analysis: any, library: any, options: any): void {
     console.log(`   Frameworks: ${chalk.white(analysis.technologies.frameworks.map((f: any) => f.name).join(', '))}`);
   }
   console.log(`   Quality Score: ${chalk.white(Math.round(analysis.quality.maintainabilityIndex))}/100`);
+  
+  // Show enterprise analysis if available
+  if (options.verbose && analysis.workflow) {
+    console.log(`   CI/CD: ${chalk.white(analysis.workflow.cicd.platforms.join(', ') || 'None')}`);
+    console.log(`   Dependencies: ${chalk.white(analysis.dependencies?.usage.direct || 0)} direct`);
+    console.log(`   Security Risk: ${chalk.white(analysis.dependencies?.security.riskLevel || 'Unknown')}`);
+    console.log(`   Documentation: ${chalk.white(analysis.documentation?.coverage || 'Unknown')}`);
+  }
+  
   console.log('');
 
   // Generated prompts
@@ -286,7 +403,12 @@ function getPhaseEmoji(phase: string): string {
     review: '🔍',
     deployment: '🚀',
     maintenance: '🔧',
-    documentation: '📚'
+    documentation: '📚',
+    workflow: '🔄',
+    'incident-response': '🚨',
+    analysis: '📊',
+    governance: '⚖️',
+    business: '💼'
   };
   return emojis[phase] || '📝';
 }

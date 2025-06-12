@@ -946,7 +946,12 @@ Please create:
       deployment: [],
       maintenance: [],
       documentation: [],
-      review: []
+      review: [],
+      workflow: [],
+      'incident-response': [],
+      analysis: [],
+      governance: [],
+      business: []
     } as { [key in SDLCPhase]: GeneratedPrompt[] };
 
     for (const prompt of prompts) {

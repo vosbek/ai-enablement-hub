@@ -39,7 +39,7 @@ layout: default
   
   <div class="prompt-card" data-category="quality" data-difficulty="beginner" data-effectiveness="4.8">
     <div class="prompt-header">
-      <h3><a href="/prompts/code-review/">Code Review Assistant</a></h3>
+      <h3><a href="#" onclick="openAIPlayground('code-review'); return false;">Code Review Assistant</a></h3>
       <div class="prompt-meta">
         <span class="category-tag quality">Quality</span>
         <span class="difficulty-badge beginner">Beginner</span>
@@ -62,14 +62,14 @@ layout: default
       <button onclick="favoritePrompt('code-review')" class="btn-favorite" id="fav-code-review">♡</button>
       <button onclick="copyPromptQuick('code-review')" class="btn-quick">📋 Copy</button>
       <button onclick="openInVSCode('code-review')" class="btn-vscode">
-        <span class="vscode-icon">📄</span> Try in VS Code
+        <span class="vscode-icon">🧪</span> Try in Playground
       </button>
     </div>
   </div>
 
   <div class="prompt-card" data-category="optimization" data-difficulty="intermediate" data-effectiveness="4.6">
     <div class="prompt-header">
-      <h3><a href="/prompts/refactoring/">Intelligent Refactoring</a></h3>
+      <h3><a href="#" onclick="openAIPlayground('refactoring'); return false;">Intelligent Refactoring</a></h3>
       <div class="prompt-meta">
         <span class="category-tag optimization">Optimization</span>
         <span class="difficulty-badge intermediate">Intermediate</span>
@@ -92,14 +92,14 @@ layout: default
       <button onclick="favoritePrompt('refactoring')" class="btn-favorite" id="fav-refactoring">♡</button>
       <button onclick="copyPromptQuick('refactoring')" class="btn-quick">📋 Copy</button>
       <button onclick="openInVSCode('refactoring')" class="btn-vscode">
-        <span class="vscode-icon">📄</span> Try in VS Code
+        <span class="vscode-icon">🧪</span> Try in Playground
       </button>
     </div>
   </div>
 
   <div class="prompt-card" data-category="testing" data-difficulty="beginner" data-effectiveness="4.7">
     <div class="prompt-header">
-      <h3><a href="/prompts/test-generation/">Smart Test Generator</a></h3>
+      <h3><a href="#" onclick="openAIPlayground('test-generation'); return false;">Smart Test Generator</a></h3>
       <div class="prompt-meta">
         <span class="category-tag testing">Testing</span>
         <span class="difficulty-badge beginner">Beginner</span>
@@ -122,14 +122,14 @@ layout: default
       <button onclick="favoritePrompt('test-generation')" class="btn-favorite" id="fav-test-generation">♡</button>
       <button onclick="copyPromptQuick('test-generation')" class="btn-quick">📋 Copy</button>
       <button onclick="openInVSCode('test-generation')" class="btn-vscode">
-        <span class="vscode-icon">📄</span> Try in VS Code
+        <span class="vscode-icon">🧪</span> Try in Playground
       </button>
     </div>
   </div>
 
   <div class="prompt-card" data-category="security" data-difficulty="advanced" data-effectiveness="4.9">
     <div class="prompt-header">
-      <h3><a href="/prompts/security-audit/">Security Vulnerability Scanner</a></h3>
+      <h3><a href="#" onclick="openAIPlayground('security-audit'); return false;">Security Vulnerability Scanner</a></h3>
       <div class="prompt-meta">
         <span class="category-tag security">Security</span>
         <span class="difficulty-badge advanced">Advanced</span>
@@ -152,14 +152,14 @@ layout: default
       <button onclick="favoritePrompt('security-audit')" class="btn-favorite" id="fav-security-audit">♡</button>
       <button onclick="copyPromptQuick('security-audit')" class="btn-quick">📋 Copy</button>
       <button onclick="openInVSCode('security-audit')" class="btn-vscode">
-        <span class="vscode-icon">📄</span> Try in VS Code
+        <span class="vscode-icon">🧪</span> Try in Playground
       </button>
     </div>
   </div>
 
   <div class="prompt-card" data-category="documentation" data-difficulty="beginner" data-effectiveness="4.5">
     <div class="prompt-header">
-      <h3><a href="/prompts/documentation/">Smart Documentation Generator</a></h3>
+      <h3><a href="#" onclick="openAIPlayground('documentation'); return false;">Smart Documentation Generator</a></h3>
       <div class="prompt-meta">
         <span class="category-tag documentation">Documentation</span>
         <span class="difficulty-badge beginner">Beginner</span>
@@ -182,14 +182,14 @@ layout: default
       <button onclick="favoritePrompt('documentation')" class="btn-favorite" id="fav-documentation">♡</button>
       <button onclick="copyPromptQuick('documentation')" class="btn-quick">📋 Copy</button>
       <button onclick="openInVSCode('documentation')" class="btn-vscode">
-        <span class="vscode-icon">📄</span> Try in VS Code
+        <span class="vscode-icon">🧪</span> Try in Playground
       </button>
     </div>
   </div>
 
   <div class="prompt-card" data-category="optimization" data-difficulty="advanced" data-effectiveness="4.4">
     <div class="prompt-header">
-      <h3><a href="/prompts/performance/">Performance Optimizer</a></h3>
+      <h3><a href="#" onclick="openAIPlayground('performance'); return false;">Performance Optimizer</a></h3>
       <div class="prompt-meta">
         <span class="category-tag optimization">Optimization</span>
         <span class="difficulty-badge advanced">Advanced</span>
@@ -212,7 +212,7 @@ layout: default
       <button onclick="favoritePrompt('performance')" class="btn-favorite" id="fav-performance">♡</button>
       <button onclick="copyPromptQuick('performance')" class="btn-quick">📋 Copy</button>
       <button onclick="openInVSCode('performance')" class="btn-vscode">
-        <span class="vscode-icon">📄</span> Try in VS Code
+        <span class="vscode-icon">🧪</span> Try in Playground
       </button>
     </div>
   </div>
@@ -330,19 +330,228 @@ function copyPromptQuick(promptId) {
 }
 
 function openInVSCode(promptId) {
-  // Check if VS Code extension is available
-  if (typeof acquireVsCodeApi !== 'undefined') {
-    // We're running inside VS Code extension
-    const vscode = acquireVsCodeApi();
-    vscode.postMessage({
-      command: 'openPromptInVSCode',
-      promptId: promptId
-    });
-    showNotification('Opening prompt in VS Code...', 'success');
-  } else {
-    // We're in a regular browser - show installation instructions
-    showInstallationModal(promptId);
+  // Open the built-in AI playground with this prompt
+  openAIPlayground(promptId);
+}
+
+function openAIPlayground(promptId) {
+  const prompts = {
+    'code-review': `Please review this code for:
+
+1. **Security vulnerabilities** - Check for common security issues
+2. **Performance optimizations** - Identify bottlenecks and improvements  
+3. **Code quality** - Assess readability, maintainability, and best practices
+4. **Bug potential** - Spot logic errors or edge cases
+5. **Documentation** - Suggest improvements to comments and naming
+
+**Code to review:**
+\`\`\`
+[PASTE YOUR CODE HERE]
+\`\`\`
+
+Please provide:
+- Priority level for each issue (High/Medium/Low)
+- Specific line references
+- Suggested fixes with code examples
+- Explanation of why each change improves the code`,
+    
+    'refactoring': `I need help refactoring this code to improve:
+
+1. **Code Structure** - Better organization and separation of concerns
+2. **Readability** - Clearer variable names and function structure
+3. **Maintainability** - Easier to modify and extend
+4. **Performance** - More efficient algorithms or patterns
+5. **Testability** - Easier to unit test
+
+**Current Code:**
+\`\`\`
+[PASTE YOUR CODE HERE]
+\`\`\`
+
+**Please provide:**
+- Step-by-step refactoring plan
+- Before/after comparisons
+- Explanation of each improvement
+- Potential risks and mitigation strategies
+- Test cases to verify functionality is preserved`,
+    
+    'test-generation': `Generate comprehensive unit tests for this code:
+
+\`\`\`
+[PASTE YOUR CODE HERE]
+\`\`\`
+
+Please include:
+1. **Happy path tests** - Normal functionality
+2. **Edge cases** - Boundary conditions and unusual inputs
+3. **Error handling** - Exception scenarios
+4. **Mocking** - External dependencies if needed
+5. **Test data** - Realistic test fixtures
+
+Generate tests using the appropriate testing framework for this language.
+Include clear test names and good assertions.`,
+
+    'security-audit': `Perform a comprehensive security audit of this code:
+
+\`\`\`
+[PASTE YOUR CODE HERE]
+\`\`\`
+
+Check for:
+1. **Input validation** - SQL injection, XSS, command injection
+2. **Authentication & Authorization** - Access control issues
+3. **Data exposure** - Sensitive information leaks
+4. **Cryptography** - Weak encryption or hashing
+5. **Dependencies** - Known vulnerabilities in libraries
+6. **Configuration** - Insecure settings or defaults
+
+Provide specific remediation steps for each issue found.`,
+
+    'documentation': `Generate comprehensive documentation for this code:
+
+\`\`\`
+[PASTE YOUR CODE HERE]
+\`\`\`
+
+Please create:
+1. **Function/Class documentation** - Purpose, parameters, return values
+2. **Usage examples** - How to use this code
+3. **Integration guide** - How it fits into larger systems
+4. **Configuration options** - Available settings and defaults
+5. **Error handling** - What exceptions it throws and why
+6. **Performance notes** - Any performance considerations
+
+Format as clear, professional documentation.`,
+
+    'performance': `Analyze and optimize the performance of this code:
+
+\`\`\`
+[PASTE YOUR CODE HERE]
+\`\`\`
+
+Focus on:
+1. **Algorithm complexity** - Time and space complexity analysis
+2. **Bottleneck identification** - Performance hotspots
+3. **Memory usage** - Memory leaks or excessive allocation
+4. **I/O optimization** - Database queries, API calls, file operations
+5. **Caching opportunities** - What can be cached for better performance
+6. **Scalability** - How it performs under load
+
+Provide optimized code examples and benchmark comparisons.`
+  };
+
+  const promptText = prompts[promptId] || 'Prompt not found';
+  const promptTitle = promptId.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+  
+  showPlaygroundModal(promptTitle, promptText);
+}
+
+function showPlaygroundModal(title, promptText) {
+  const modal = document.createElement('div');
+  modal.className = 'playground-modal-overlay';
+  modal.innerHTML = `
+    <div class="playground-modal">
+      <div class="modal-header">
+        <h3>🧪 AI Playground - ${title}</h3>
+        <button onclick="closePlaygroundModal()" class="close-btn">&times;</button>
+      </div>
+      <div class="playground-content">
+        <div class="playground-grid">
+          <div class="input-section">
+            <h4>📝 Your Code</h4>
+            <textarea id="codeInput" placeholder="Paste your code here..."></textarea>
+            <div class="input-actions">
+              <button onclick="runPrompt()" class="btn-run">🚀 Analyze with AI</button>
+              <button onclick="clearInputs()" class="btn-clear">🗑️ Clear</button>
+            </div>
+          </div>
+          <div class="output-section">
+            <h4>🤖 AI Analysis</h4>
+            <div id="aiOutput" class="ai-output">
+              Ready to analyze your code! Paste your code on the left and click "Analyze with AI".
+              <br><br>
+              <strong>Using GitHub Copilot:</strong>
+              <ol>
+                <li>Copy the prompt below</li>
+                <li>Open VS Code with your code</li>
+                <li>Open GitHub Copilot Chat</li>
+                <li>Paste the prompt and your code</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div class="prompt-section">
+          <h4>📋 AI Prompt Template</h4>
+          <textarea id="promptTemplate" readonly>${promptText}</textarea>
+          <button onclick="copyFullPrompt()" class="btn-copy-prompt">📋 Copy Complete Prompt</button>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(modal);
+  
+  // Add event listener to close on outside click
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      closePlaygroundModal();
+    }
+  });
+}
+
+function closePlaygroundModal() {
+  const modal = document.querySelector('.playground-modal-overlay');
+  if (modal) {
+    modal.remove();
   }
+}
+
+function runPrompt() {
+  const codeInput = document.getElementById('codeInput').value;
+  const promptTemplate = document.getElementById('promptTemplate').value;
+  const output = document.getElementById('aiOutput');
+  
+  if (!codeInput.trim()) {
+    output.innerHTML = '<div class="error">⚠️ Please paste your code first!</div>';
+    return;
+  }
+  
+  // Replace the placeholder with actual code
+  const fullPrompt = promptTemplate.replace('[PASTE YOUR CODE HERE]', codeInput);
+  
+  // Copy to clipboard and show instructions
+  navigator.clipboard.writeText(fullPrompt).then(() => {
+    output.innerHTML = `
+      <div class="success">
+        ✅ <strong>Prompt copied to clipboard!</strong>
+      </div>
+      <div class="instructions">
+        <h5>Next steps with GitHub Copilot:</h5>
+        <ol>
+          <li>Open <strong>VS Code</strong> with your project</li>
+          <li>Press <kbd>Ctrl+Shift+I</kbd> (or <kbd>Cmd+Shift+I</kbd> on Mac) to open <strong>GitHub Copilot Chat</strong></li>
+          <li><strong>Paste the prompt</strong> (already copied to clipboard)</li>
+          <li>Hit <strong>Enter</strong> to get AI analysis</li>
+        </ol>
+        <p class="tip">💡 <strong>Tip:</strong> The prompt includes your code and specific analysis instructions.</p>
+      </div>
+    `;
+  });
+}
+
+function clearInputs() {
+  document.getElementById('codeInput').value = '';
+  document.getElementById('aiOutput').innerHTML = 'Ready to analyze your code! Paste your code on the left and click "Analyze with AI".';
+}
+
+function copyFullPrompt() {
+  const codeInput = document.getElementById('codeInput').value || '[PASTE YOUR CODE HERE]';
+  const promptTemplate = document.getElementById('promptTemplate').value;
+  const fullPrompt = promptTemplate.replace('[PASTE YOUR CODE HERE]', codeInput);
+  
+  navigator.clipboard.writeText(fullPrompt).then(() => {
+    showNotification('Complete prompt copied to clipboard!', 'success');
+  });
 }
 
 function showInstallationModal(promptId) {
@@ -940,6 +1149,203 @@ document.head.appendChild(style);
   }
 }
 
+/* Playground Modal Styles */
+.playground-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.playground-modal {
+  background: white;
+  border-radius: 12px;
+  max-width: 1200px;
+  width: 95%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.3s ease-out;
+}
+
+.playground-content {
+  padding: 1.5rem;
+}
+
+.playground-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.input-section, .output-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-section h4, .output-section h4 {
+  margin: 0 0 1rem 0;
+  color: #1f2937;
+  font-size: 1.1rem;
+}
+
+#codeInput {
+  flex: 1;
+  min-height: 200px;
+  padding: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9rem;
+  resize: vertical;
+}
+
+#codeInput:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.input-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.btn-run {
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-run:hover {
+  background: #16a34a;
+}
+
+.btn-clear {
+  background: #f3f4f6;
+  color: #374151;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-clear:hover {
+  background: #e5e7eb;
+}
+
+.ai-output {
+  flex: 1;
+  min-height: 200px;
+  padding: 1rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.ai-output .success {
+  background: #ecfdf5;
+  color: #065f46;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  border: 1px solid #bbf7d0;
+}
+
+.ai-output .error {
+  background: #fef2f2;
+  color: #991b1b;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #fecaca;
+}
+
+.ai-output .instructions {
+  background: #f0f9ff;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #bae6fd;
+}
+
+.ai-output .instructions h5 {
+  margin: 0 0 0.75rem 0;
+  color: #0c4a6e;
+}
+
+.ai-output .instructions ol {
+  margin: 0 0 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.ai-output .instructions kbd {
+  background: #374151;
+  color: white;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.85rem;
+}
+
+.ai-output .tip {
+  margin: 0;
+  font-style: italic;
+  color: #0369a1;
+}
+
+.prompt-section {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1.5rem;
+}
+
+.prompt-section h4 {
+  margin: 0 0 1rem 0;
+  color: #1f2937;
+  font-size: 1.1rem;
+}
+
+#promptTemplate {
+  width: 100%;
+  min-height: 150px;
+  padding: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.85rem;
+  background: #f9fafb;
+  resize: vertical;
+}
+
+.btn-copy-prompt {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.btn-copy-prompt:hover {
+  background: #5a67d8;
+}
+
 @media (max-width: 768px) {
   .search-filters {
     flex-direction: column;
@@ -965,6 +1371,15 @@ document.head.appendChild(style);
   
   .modal-actions {
     flex-direction: column;
+  }
+  
+  .playground-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .playground-modal {
+    width: 98%;
+    max-height: 95vh;
   }
 }
 </style>

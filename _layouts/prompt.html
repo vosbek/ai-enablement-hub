@@ -1,0 +1,223 @@
+---
+layout: default
+---
+
+<div class="prompt-page">
+  <div class="prompt-header">
+    <a href="{{ '/prompts.html' | relative_url }}" class="back-link">← Back to Prompt Library</a>
+    <h1>{{ page.title }}</h1>
+    <div class="prompt-meta">
+      <span class="category-tag {{ page.category }}">{{ page.category | capitalize }}</span>
+      <span class="difficulty-badge {{ page.difficulty }}">{{ page.difficulty | capitalize }}</span>
+      <div class="effectiveness-score">
+        <span class="stars">⭐⭐⭐⭐⭐</span>
+        <span class="score">{{ page.effectiveness }}/5</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="prompt-actions-header">
+    <button onclick="openAIPlayground('{{ page.slug }}')" class="btn-playground">
+      🧪 Try in AI Playground
+    </button>
+    <button onclick="copyPromptContent()" class="btn-copy">
+      📋 Copy Prompt
+    </button>
+  </div>
+
+  <div class="prompt-content">
+    {{ content }}
+  </div>
+</div>
+
+<script>
+function openAIPlayground(promptId) {
+  // This would open the AI playground modal
+  alert('AI Playground would open here with prompt: ' + promptId);
+}
+
+function copyPromptContent() {
+  // Extract the main prompt from the content
+  const promptElement = document.querySelector('.prompt-content pre code');
+  if (promptElement) {
+    navigator.clipboard.writeText(promptElement.textContent).then(() => {
+      alert('Prompt copied to clipboard!');
+    });
+  }
+}
+</script>
+
+<style>
+.prompt-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.prompt-header {
+  margin-bottom: 2rem;
+}
+
+.back-link {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.back-link:hover {
+  color: #5a67d8;
+}
+
+.prompt-header h1 {
+  margin: 0.5rem 0 1rem 0;
+  color: #1f2937;
+}
+
+.prompt-meta {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.category-tag {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.category-tag.quality { background: #ddd6fe; color: #5b21b6; }
+.category-tag.optimization { background: #fed7d7; color: #c53030; }
+.category-tag.testing { background: #c6f6d5; color: #2f855a; }
+.category-tag.security { background: #fde68a; color: #d97706; }
+.category-tag.documentation { background: #bfdbfe; color: #1d4ed8; }
+
+.difficulty-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.difficulty-badge.beginner { background: #d1fae5; color: #065f46; }
+.difficulty-badge.intermediate { background: #fef3c7; color: #92400e; }
+.difficulty-badge.advanced { background: #fee2e2; color: #991b1b; }
+
+.effectiveness-score {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+.stars {
+  color: #fbbf24;
+  font-size: 0.875rem;
+}
+
+.score {
+  font-weight: 600;
+  color: #374151;
+}
+
+.prompt-actions-header {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #f8f9ff;
+  border-radius: 8px;
+}
+
+.btn-playground {
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-playground:hover {
+  background: #16a34a;
+}
+
+.btn-copy {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-copy:hover {
+  background: #5a67d8;
+}
+
+.prompt-content {
+  line-height: 1.7;
+}
+
+.prompt-content h2 {
+  color: #1f2937;
+  margin: 2rem 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.prompt-content h3 {
+  color: #374151;
+  margin: 1.5rem 0 0.75rem 0;
+}
+
+.prompt-content h4 {
+  color: #4b5563;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.prompt-content pre {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.prompt-content code {
+  background: #f3f4f6;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.prompt-content pre code {
+  background: none;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .prompt-page {
+    padding: 1rem 0.5rem;
+  }
+  
+  .prompt-actions-header {
+    flex-direction: column;
+  }
+  
+  .prompt-meta {
+    justify-content: center;
+  }
+  
+  .effectiveness-score {
+    margin-left: 0;
+  }
+}
+</style>

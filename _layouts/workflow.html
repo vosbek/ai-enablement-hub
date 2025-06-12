@@ -1,0 +1,168 @@
+---
+layout: default
+---
+
+<div class="workflow-page">
+  <div class="workflow-header">
+    <a href="{{ '/workflows.html' | relative_url }}" class="back-link">← Back to Workflows</a>
+    <h1>{{ page.title }}</h1>
+    <div class="workflow-meta">
+      <span class="difficulty {{ page.difficulty }}">{{ page.difficulty | capitalize }}</span>
+      <span class="duration">⏱️ {{ page.estimated_time }}</span>
+      <span class="team-size">👥 {{ page.team_size }}</span>
+    </div>
+  </div>
+
+  <div class="workflow-content">
+    {{ content }}
+  </div>
+</div>
+
+<style>
+.workflow-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.workflow-header {
+  margin-bottom: 2rem;
+}
+
+.back-link {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.back-link:hover {
+  color: #5a67d8;
+}
+
+.workflow-header h1 {
+  margin: 0.5rem 0 1rem 0;
+  color: #1f2937;
+}
+
+.workflow-meta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.difficulty, .duration, .team-size {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.difficulty.beginner {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.difficulty.intermediate {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.difficulty.advanced {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.duration, .team-size {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.workflow-content {
+  line-height: 1.7;
+}
+
+.workflow-content h2 {
+  color: #1f2937;
+  margin: 2rem 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.workflow-content h3 {
+  color: #374151;
+  margin: 1.5rem 0 0.75rem 0;
+}
+
+.workflow-content h4 {
+  color: #4b5563;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.workflow-content ul, .workflow-content ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.workflow-content li {
+  margin-bottom: 0.5rem;
+}
+
+.workflow-content pre {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.workflow-content code {
+  background: #f3f4f6;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.workflow-content pre code {
+  background: none;
+  padding: 0;
+}
+
+.workflow-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.workflow-content th,
+.workflow-content td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.workflow-content th {
+  background: #f9fafb;
+  font-weight: 600;
+}
+
+.workflow-content blockquote {
+  border-left: 4px solid #667eea;
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: #6b7280;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .workflow-page {
+    padding: 1rem 0.5rem;
+  }
+  
+  .workflow-meta {
+    justify-content: center;
+  }
+}
+</style>

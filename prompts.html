@@ -62,7 +62,7 @@ layout: default
       <button onclick="favoritePrompt('code-review')" class="btn-favorite" id="fav-code-review">♡</button>
       <button onclick="copyPromptQuick('code-review')" class="btn-quick">📋 Copy</button>
       <button onclick="openInVSCode('code-review')" class="btn-vscode">
-        <img src="/assets/vscode-icon.svg" alt="VS Code" width="14"> Try Now
+        <span class="vscode-icon">📄</span> Try in VS Code
       </button>
     </div>
   </div>
@@ -92,7 +92,7 @@ layout: default
       <button onclick="favoritePrompt('refactoring')" class="btn-favorite" id="fav-refactoring">♡</button>
       <button onclick="copyPromptQuick('refactoring')" class="btn-quick">📋 Copy</button>
       <button onclick="openInVSCode('refactoring')" class="btn-vscode">
-        <img src="/assets/vscode-icon.svg" alt="VS Code" width="14"> Try Now
+        <span class="vscode-icon">📄</span> Try in VS Code
       </button>
     </div>
   </div>
@@ -122,7 +122,7 @@ layout: default
       <button onclick="favoritePrompt('test-generation')" class="btn-favorite" id="fav-test-generation">♡</button>
       <button onclick="copyPromptQuick('test-generation')" class="btn-quick">📋 Copy</button>
       <button onclick="openInVSCode('test-generation')" class="btn-vscode">
-        <img src="/assets/vscode-icon.svg" alt="VS Code" width="14"> Try Now
+        <span class="vscode-icon">📄</span> Try in VS Code
       </button>
     </div>
   </div>
@@ -152,7 +152,7 @@ layout: default
       <button onclick="favoritePrompt('security-audit')" class="btn-favorite" id="fav-security-audit">♡</button>
       <button onclick="copyPromptQuick('security-audit')" class="btn-quick">📋 Copy</button>
       <button onclick="openInVSCode('security-audit')" class="btn-vscode">
-        <img src="/assets/vscode-icon.svg" alt="VS Code" width="14"> Try Now
+        <span class="vscode-icon">📄</span> Try in VS Code
       </button>
     </div>
   </div>
@@ -182,7 +182,7 @@ layout: default
       <button onclick="favoritePrompt('documentation')" class="btn-favorite" id="fav-documentation">♡</button>
       <button onclick="copyPromptQuick('documentation')" class="btn-quick">📋 Copy</button>
       <button onclick="openInVSCode('documentation')" class="btn-vscode">
-        <img src="/assets/vscode-icon.svg" alt="VS Code" width="14"> Try Now
+        <span class="vscode-icon">📄</span> Try in VS Code
       </button>
     </div>
   </div>
@@ -212,7 +212,7 @@ layout: default
       <button onclick="favoritePrompt('performance')" class="btn-favorite" id="fav-performance">♡</button>
       <button onclick="copyPromptQuick('performance')" class="btn-quick">📋 Copy</button>
       <button onclick="openInVSCode('performance')" class="btn-vscode">
-        <img src="/assets/vscode-icon.svg" alt="VS Code" width="14"> Try Now
+        <span class="vscode-icon">📄</span> Try in VS Code
       </button>
     </div>
   </div>
@@ -330,14 +330,139 @@ function copyPromptQuick(promptId) {
 }
 
 function openInVSCode(promptId) {
-  // This would communicate with the VS Code extension
-  window.postMessage({
-    command: 'openPromptInVSCode',
-    promptId: promptId
-  }, '*');
+  // Check if VS Code extension is available
+  if (typeof acquireVsCodeApi !== 'undefined') {
+    // We're running inside VS Code extension
+    const vscode = acquireVsCodeApi();
+    vscode.postMessage({
+      command: 'openPromptInVSCode',
+      promptId: promptId
+    });
+    showNotification('Opening prompt in VS Code...', 'success');
+  } else {
+    // We're in a regular browser - show installation instructions
+    showInstallationModal(promptId);
+  }
+}
+
+function showInstallationModal(promptId) {
+  const modal = document.createElement('div');
+  modal.className = 'vscode-modal-overlay';
+  modal.innerHTML = `
+    <div class="vscode-modal">
+      <div class="modal-header">
+        <h3>📄 VS Code Extension Required</h3>
+        <button onclick="closeModal()" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-content">
+        <p>To try prompts directly in VS Code, you need to install the Enterprise Copilot Coach extension.</p>
+        <div class="modal-steps">
+          <div class="step">
+            <span class="step-number">1</span>
+            <span>Install the VS Code extension</span>
+          </div>
+          <div class="step">
+            <span class="step-number">2</span>
+            <span>Configure AWS Bedrock access</span>
+          </div>
+          <div class="step">
+            <span class="step-number">3</span>
+            <span>Try prompts on your actual code</span>
+          </div>
+        </div>
+        <div class="prompt-preview">
+          <strong>For now, here's the ${promptId} prompt you can copy:</strong>
+          <button onclick="copyPromptText('${promptId}')" class="copy-prompt-btn">📋 Copy Prompt Text</button>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <a href="https://github.com/vosbek/ai-enablement-hub/tree/main/vscode-extension" 
+           target="_blank" class="btn-primary">📥 Get Extension</a>
+        <button onclick="closeModal()" class="btn-secondary">Close</button>
+      </div>
+    </div>
+  `;
   
-  // For demo, show notification
-  showNotification('Opening prompt in VS Code...', 'info');
+  document.body.appendChild(modal);
+  
+  // Add event listener to close on outside click
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+}
+
+function closeModal() {
+  const modal = document.querySelector('.vscode-modal-overlay');
+  if (modal) {
+    modal.remove();
+  }
+}
+
+function copyPromptText(promptId) {
+  const prompts = {
+    'code-review': `Please review this code for:
+
+1. **Security vulnerabilities** - Check for common security issues
+2. **Performance optimizations** - Identify bottlenecks and improvements  
+3. **Code quality** - Assess readability, maintainability, and best practices
+4. **Bug potential** - Spot logic errors or edge cases
+5. **Documentation** - Suggest improvements to comments and naming
+
+**Code to review:**
+\`\`\`
+[PASTE YOUR CODE HERE]
+\`\`\`
+
+Please provide:
+- Priority level for each issue (High/Medium/Low)
+- Specific line references
+- Suggested fixes with code examples
+- Explanation of why each change improves the code`,
+    
+    'refactoring': `I need help refactoring this code to improve:
+
+1. **Code Structure** - Better organization and separation of concerns
+2. **Readability** - Clearer variable names and function structure
+3. **Maintainability** - Easier to modify and extend
+4. **Performance** - More efficient algorithms or patterns
+5. **Testability** - Easier to unit test
+
+**Current Code:**
+\`\`\`
+[PASTE YOUR CODE HERE]
+\`\`\`
+
+**Please provide:**
+- Step-by-step refactoring plan
+- Before/after comparisons
+- Explanation of each improvement
+- Potential risks and mitigation strategies
+- Test cases to verify functionality is preserved`,
+    
+    'test-generation': `Generate comprehensive unit tests for this code:
+
+\`\`\`
+[PASTE YOUR CODE HERE]
+\`\`\`
+
+Please include:
+1. **Happy path tests** - Normal functionality
+2. **Edge cases** - Boundary conditions and unusual inputs
+3. **Error handling** - Exception scenarios
+4. **Mocking** - External dependencies if needed
+5. **Test data** - Realistic test fixtures
+
+Generate tests using the appropriate testing framework for this language.
+Include clear test names and good assertions.`
+  };
+  
+  const promptText = prompts[promptId] || 'Prompt not found';
+  navigator.clipboard.writeText(promptText).then(() => {
+    showNotification('Prompt copied to clipboard!', 'success');
+    closeModal();
+  });
 }
 
 function installExtension() {
@@ -588,20 +713,26 @@ document.head.appendChild(style);
 .btn-vscode {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   padding: 0.5rem 0.75rem;
   background: #007acc;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  margin-left: auto;
+  white-space: nowrap;
+  min-width: fit-content;
 }
 
 .btn-vscode:hover {
   background: #005999;
+}
+
+.vscode-icon {
+  font-size: 0.9rem;
+  line-height: 1;
 }
 
 .ai-playground-banner {
@@ -634,6 +765,181 @@ document.head.appendChild(style);
   transform: translateY(-2px);
 }
 
+/* Modal Styles */
+.vscode-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.vscode-modal {
+  background: white;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.3s ease-out;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e1e5e9;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #1f2937;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.close-btn:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.modal-content {
+  padding: 1.5rem;
+}
+
+.modal-content p {
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.modal-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: #f8f9ff;
+  border-radius: 8px;
+}
+
+.step-number {
+  background: #667eea;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.prompt-preview {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.copy-prompt-btn {
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 0.75rem;
+}
+
+.copy-prompt-btn:hover {
+  background: #16a34a;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  border-top: 1px solid #e1e5e9;
+}
+
+.modal-actions .btn-primary {
+  background: #667eea;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-actions .btn-primary:hover {
+  background: #5a67d8;
+}
+
+.modal-actions .btn-secondary {
+  background: #f3f4f6;
+  color: #374151;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.modal-actions .btn-secondary:hover {
+  background: #e5e7eb;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { 
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @media (max-width: 768px) {
   .search-filters {
     flex-direction: column;
@@ -650,6 +956,15 @@ document.head.appendChild(style);
   
   .prompt-actions {
     flex-wrap: wrap;
+  }
+  
+  .vscode-modal {
+    width: 95%;
+    margin: 1rem;
+  }
+  
+  .modal-actions {
+    flex-direction: column;
   }
 }
 </style>

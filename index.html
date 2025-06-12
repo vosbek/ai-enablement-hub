@@ -32,7 +32,7 @@ layout: default
       <a href="{{ '/prompts.html' | relative_url }}" class="btn btn-primary">Explore Prompts</a>
       <div class="vscode-link">
         <button onclick="openPromptLibrary()" class="btn-vscode">
-          <span class="vscode-icon">🧪</span> Try Playground
+          <span class="vscode-icon">📚</span> Browse Library
         </button>
       </div>
     </div>
@@ -116,17 +116,8 @@ layout: default
 
 <script>
 function openPromptLibrary() {
-  // Check if VS Code extension is available
-  if (typeof acquireVsCodeApi !== 'undefined') {
-    // We're running inside VS Code extension
-    const vscode = acquireVsCodeApi();
-    vscode.postMessage({
-      command: 'openPromptLibrary'
-    });
-  } else {
-    // We're in a regular browser - redirect to prompts page
-    window.location.href = 'prompts.html';
-  }
+  // Simply redirect to prompts page
+  window.location.href = 'prompts.html';
 }
 
 function installExtension() {

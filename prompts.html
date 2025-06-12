@@ -62,7 +62,7 @@ layout: default
       <button onclick="favoritePrompt('code-review')" class="btn-favorite" id="fav-code-review">♡</button>
       <button onclick="copyPromptQuick('code-review')" class="btn-quick">📋 Copy</button>
       <button onclick="openInVSCode('code-review')" class="btn-vscode">
-        <span class="vscode-icon">🧪</span> Try in Playground
+        <span class="vscode-icon">📋</span> Copy Prompt
       </button>
     </div>
   </div>
@@ -92,7 +92,7 @@ layout: default
       <button onclick="favoritePrompt('refactoring')" class="btn-favorite" id="fav-refactoring">♡</button>
       <button onclick="copyPromptQuick('refactoring')" class="btn-quick">📋 Copy</button>
       <button onclick="openInVSCode('refactoring')" class="btn-vscode">
-        <span class="vscode-icon">🧪</span> Try in Playground
+        <span class="vscode-icon">📋</span> Copy Prompt
       </button>
     </div>
   </div>
@@ -122,7 +122,7 @@ layout: default
       <button onclick="favoritePrompt('test-generation')" class="btn-favorite" id="fav-test-generation">♡</button>
       <button onclick="copyPromptQuick('test-generation')" class="btn-quick">📋 Copy</button>
       <button onclick="openInVSCode('test-generation')" class="btn-vscode">
-        <span class="vscode-icon">🧪</span> Try in Playground
+        <span class="vscode-icon">📋</span> Copy Prompt
       </button>
     </div>
   </div>
@@ -152,7 +152,7 @@ layout: default
       <button onclick="favoritePrompt('security-audit')" class="btn-favorite" id="fav-security-audit">♡</button>
       <button onclick="copyPromptQuick('security-audit')" class="btn-quick">📋 Copy</button>
       <button onclick="openInVSCode('security-audit')" class="btn-vscode">
-        <span class="vscode-icon">🧪</span> Try in Playground
+        <span class="vscode-icon">📋</span> Copy Prompt
       </button>
     </div>
   </div>
@@ -182,17 +182,133 @@ layout: default
       <button onclick="favoritePrompt('documentation')" class="btn-favorite" id="fav-documentation">♡</button>
       <button onclick="copyPromptQuick('documentation')" class="btn-quick">📋 Copy</button>
       <button onclick="openInVSCode('documentation')" class="btn-vscode">
-        <span class="vscode-icon">🧪</span> Try in Playground
+        <span class="vscode-icon">📋</span> Copy Prompt
       </button>
     </div>
   </div>
 
   <div class="prompt-card" data-category="optimization" data-difficulty="advanced" data-effectiveness="4.4">
     <div class="prompt-header">
-      <h3><a href="#" onclick="openAIPlayground('performance'); return false;">Performance Optimizer</a></h3>
+      <h3><a href="#" onclick="copyPromptFromLibrary('optimize-performance'); return false;">Optimize Code Performance</a></h3>
       <div class="prompt-meta">
         <span class="category-tag optimization">Optimization</span>
         <span class="difficulty-badge advanced">Advanced</span>
+        <div class="effectiveness-score">
+          <span class="stars">⭐⭐⭐⭐⭐</span>
+          <span class="score">4.6</span>
+        </div>
+      </div>
+    </div>
+    
+    <p>Analyze and optimize code for better performance, reducing time complexity and memory usage.</p>
+    
+    <div class="prompt-stats">
+      <span class="stat">📊 76 uses</span>
+      <span class="stat">⚡ 45% speed improvement</span>
+      <span class="stat">💾 32% memory reduction</span>
+    </div>
+    
+    <div class="prompt-actions">
+      <button onclick="favoritePrompt('optimize-performance')" class="btn-favorite" id="fav-optimize-performance">♡</button>
+      <button onclick="copyPromptFromLibrary('optimize-performance')" class="btn-vscode">
+        <span class="vscode-icon">📋</span> Copy Prompt
+      </button>
+    </div>
+  </div>
+
+  <div class="prompt-card" data-category="quality" data-difficulty="intermediate" data-effectiveness="4.7">
+    <div class="prompt-header">
+      <h3><a href="#" onclick="copyPromptFromLibrary('add-error-handling'); return false;">Add Comprehensive Error Handling</a></h3>
+      <div class="prompt-meta">
+        <span class="category-tag quality">Quality</span>
+        <span class="difficulty-badge intermediate">Intermediate</span>
+        <div class="effectiveness-score">
+          <span class="stars">⭐⭐⭐⭐⭐</span>
+          <span class="score">4.7</span>
+        </div>
+      </div>
+    </div>
+    
+    <p>Add robust error handling, input validation, and graceful failure modes to existing code.</p>
+    
+    <div class="prompt-stats">
+      <span class="stat">📊 89 uses</span>
+      <span class="stat">🛡️ Prevents crashes</span>
+      <span class="stat">🐛 Better debugging</span>
+    </div>
+    
+    <div class="prompt-actions">
+      <button onclick="favoritePrompt('add-error-handling')" class="btn-favorite" id="fav-add-error-handling">♡</button>
+      <button onclick="copyPromptFromLibrary('add-error-handling')" class="btn-vscode">
+        <span class="vscode-icon">📋</span> Copy Prompt
+      </button>
+    </div>
+  </div>
+
+  <div class="prompt-card" data-category="testing" data-difficulty="beginner" data-effectiveness="4.8">
+    <div class="prompt-header">
+      <h3><a href="#" onclick="copyPromptFromLibrary('generate-unit-tests'); return false;">Generate Comprehensive Unit Tests</a></h3>
+      <div class="prompt-meta">
+        <span class="category-tag testing">Testing</span>
+        <span class="difficulty-badge beginner">Beginner</span>
+        <div class="effectiveness-score">
+          <span class="stars">⭐⭐⭐⭐⭐</span>
+          <span class="score">4.8</span>
+        </div>
+      </div>
+    </div>
+    
+    <p>Create thorough unit tests with edge cases, mocks, and proper assertions for any function or class.</p>
+    
+    <div class="prompt-stats">
+      <span class="stat">📊 156 uses</span>
+      <span class="stat">🎯 100% coverage</span>
+      <span class="stat">⚡ Saves hours</span>
+    </div>
+    
+    <div class="prompt-actions">
+      <button onclick="favoritePrompt('generate-unit-tests')" class="btn-favorite" id="fav-generate-unit-tests">♡</button>
+      <button onclick="copyPromptFromLibrary('generate-unit-tests')" class="btn-vscode">
+        <span class="vscode-icon">📋</span> Copy Prompt
+      </button>
+    </div>
+  </div>
+
+  <div class="prompt-card" data-category="quality" data-difficulty="intermediate" data-effectiveness="4.5">
+    <div class="prompt-header">
+      <h3><a href="#" onclick="copyPromptFromLibrary('add-typescript-types'); return false;">Add TypeScript Types</a></h3>
+      <div class="prompt-meta">
+        <span class="category-tag quality">Quality</span>
+        <span class="difficulty-badge intermediate">Intermediate</span>
+        <div class="effectiveness-score">
+          <span class="stars">⭐⭐⭐⭐⭐</span>
+          <span class="score">4.5</span>
+        </div>
+      </div>
+    </div>
+    
+    <p>Convert JavaScript code to TypeScript with proper types, interfaces, and type safety.</p>
+    
+    <div class="prompt-stats">
+      <span class="stat">📊 92 uses</span>
+      <span class="stat">🔒 Type safety</span>
+      <span class="stat">🧠 Better IntelliSense</span>
+    </div>
+    
+    <div class="prompt-actions">
+      <button onclick="favoritePrompt('add-typescript-types')" class="btn-favorite" id="fav-add-typescript-types">♡</button>
+      <button onclick="copyPromptFromLibrary('add-typescript-types')" class="btn-vscode">
+        <span class="vscode-icon">📋</span> Copy Prompt
+      </button>
+    </div>
+  </div>
+
+  <div class="prompt-card" data-category="optimization" data-difficulty="intermediate" data-effectiveness="4.4">
+    <div class="prompt-header">
+      <h3><a href="#" onclick="copyPromptFromLibrary('convert-to-async'); return false;">Convert to Async/Await</a></h3>
+      <div class="prompt-meta">
+        <span class="category-tag optimization">Optimization</span>
+        <span class="difficulty-badge intermediate">Intermediate</span>
         <div class="effectiveness-score">
           <span class="stars">⭐⭐⭐⭐⭐</span>
           <span class="score">4.4</span>
@@ -200,30 +316,75 @@ layout: default
       </div>
     </div>
     
-    <p>Advanced performance analysis with profiling insights, bottleneck detection, and optimization strategies.</p>
+    <p>Convert callback-based or Promise chain code to modern async/await syntax for better readability.</p>
     
     <div class="prompt-stats">
-      <span class="stat">📊 967 uses</span>
-      <span class="stat">⚡ 45% speed improvement</span>
-      <span class="stat">💾 32% memory reduction</span>
+      <span class="stat">📊 67 uses</span>
+      <span class="stat">📖 Better readability</span>
+      <span class="stat">⚡ Modern patterns</span>
     </div>
     
     <div class="prompt-actions">
-      <button onclick="favoritePrompt('performance')" class="btn-favorite" id="fav-performance">♡</button>
-      <button onclick="copyPromptQuick('performance')" class="btn-quick">📋 Copy</button>
-      <button onclick="openInVSCode('performance')" class="btn-vscode">
-        <span class="vscode-icon">🧪</span> Try in Playground
+      <button onclick="favoritePrompt('convert-to-async')" class="btn-favorite" id="fav-convert-to-async">♡</button>
+      <button onclick="copyPromptFromLibrary('convert-to-async')" class="btn-vscode">
+        <span class="vscode-icon">📋</span> Copy Prompt
+      </button>
+    </div>
+  </div>
+
+  <div class="prompt-card" data-category="quality" data-difficulty="beginner" data-effectiveness="4.6">
+    <div class="prompt-header">
+      <h3><a href="#" onclick="copyPromptFromLibrary('add-logging'); return false;">Add Comprehensive Logging</a></h3>
+      <div class="prompt-meta">
+        <span class="category-tag quality">Quality</span>
+        <span class="difficulty-badge beginner">Beginner</span>
+        <div class="effectiveness-score">
+          <span class="stars">⭐⭐⭐⭐⭐</span>
+          <span class="score">4.6</span>
+        </div>
+      </div>
+    </div>
+    
+    <p>Add proper logging statements for debugging, monitoring, and observability.</p>
+    
+    <div class="prompt-stats">
+      <span class="stat">📊 134 uses</span>
+      <span class="stat">🔍 Better debugging</span>
+      <span class="stat">📈 Monitoring ready</span>
+    </div>
+    
+    <div class="prompt-actions">
+      <button onclick="favoritePrompt('add-logging')" class="btn-favorite" id="fav-add-logging">♡</button>
+      <button onclick="copyPromptFromLibrary('add-logging')" class="btn-vscode">
+        <span class="vscode-icon">📋</span> Copy Prompt
       </button>
     </div>
   </div>
 
 </div>
 
-<div class="ai-playground-banner">
-  <div class="playground-content">
-    <h3>🧪 Try Prompts Live in VS Code</h3>
-    <p>Install our extension to test these prompts on your actual code with real AI responses</p>
-    <button onclick="installExtension()" class="btn-install">Install Enterprise Copilot Coach</button>
+<div class="usage-banner">
+  <div class="usage-content">
+    <h3>🚀 How to Use These Prompts</h3>
+    <div class="usage-steps">
+      <div class="usage-step">
+        <span class="step-num">1</span>
+        <span>Click "Copy Prompt" on any card above</span>
+      </div>
+      <div class="usage-step">
+        <span class="step-num">2</span>
+        <span>Open VS Code and press <kbd>Ctrl+Shift+I</kbd> (or <kbd>Cmd+Shift+I</kbd> on Mac)</span>
+      </div>
+      <div class="usage-step">
+        <span class="step-num">3</span>
+        <span>Paste the prompt in GitHub Copilot Chat</span>
+      </div>
+      <div class="usage-step">
+        <span class="step-num">4</span>
+        <span>Replace [YOUR CODE HERE] with your actual code</span>
+      </div>
+    </div>
+    <p class="usage-note">💡 <strong>Pro tip:</strong> These prompts work with any AI assistant - GitHub Copilot, ChatGPT, Claude, etc.</p>
   </div>
 </div>
 
@@ -313,25 +474,273 @@ function showOnlyFavorites() {
 }
 
 function copyPromptQuick(promptId) {
-  // In a real implementation, this would fetch the actual prompt content
-  // For demo purposes, we'll show a success message
-  const btn = event.target;
-  const originalText = btn.textContent;
-  btn.textContent = '✓ Copied!';
-  btn.style.background = '#22c55e';
+  copyPromptFromLibrary(promptId);
+}
+
+function copyPromptFromLibrary(promptId) {
+  // Prompt library with actual prompt templates
+  const promptLibrary = {
+    'code-review': `Please review this code for:
+
+1. **Security vulnerabilities** - Check for common security issues
+2. **Performance optimizations** - Identify bottlenecks and improvements  
+3. **Code quality** - Assess readability, maintainability, and best practices
+4. **Bug potential** - Spot logic errors or edge cases
+5. **Documentation** - Suggest improvements to comments and naming
+
+**Code to review:**
+\`\`\`
+[YOUR CODE HERE]
+\`\`\`
+
+Please provide:
+- Priority level for each issue (High/Medium/Low)
+- Specific line references
+- Suggested fixes with code examples
+- Explanation of why each change improves the code`,
+
+    'refactoring': `I need help refactoring this code to improve:
+
+1. **Code Structure** - Better organization and separation of concerns
+2. **Readability** - Clearer variable names and function structure
+3. **Maintainability** - Easier to modify and extend
+4. **Performance** - More efficient algorithms or patterns
+5. **Testability** - Easier to unit test
+
+**Current Code:**
+\`\`\`
+[YOUR CODE HERE]
+\`\`\`
+
+**Please provide:**
+- Step-by-step refactoring plan
+- Before/after comparisons
+- Explanation of each improvement
+- Potential risks and mitigation strategies
+- Test cases to verify functionality is preserved`,
+
+    'test-generation': `Generate comprehensive unit tests for this code:
+
+\`\`\`
+[YOUR CODE HERE]
+\`\`\`
+
+Please create tests that cover:
+1. **Happy path scenarios** - Normal functionality with valid inputs
+2. **Edge cases** - Boundary conditions, empty inputs, null values
+3. **Error cases** - Invalid inputs, exception scenarios
+4. **Mock dependencies** - External APIs, databases, file systems
+5. **Assertions** - Verify outputs, side effects, and behavior
+
+Use [Jest/Mocha/Pytest/JUnit - specify your framework] testing framework.`,
+
+    'security-audit': `Perform a comprehensive security audit of this code:
+
+\`\`\`
+[YOUR CODE HERE]
+\`\`\`
+
+Check for:
+1. **Input validation** - SQL injection, XSS, command injection
+2. **Authentication & Authorization** - Access control issues
+3. **Data exposure** - Sensitive information leaks
+4. **Cryptography** - Weak encryption or hashing
+5. **Dependencies** - Known vulnerabilities in libraries
+6. **Configuration** - Insecure settings or defaults
+
+Provide specific remediation steps for each issue found.`,
+
+    'documentation': `Generate comprehensive documentation for this code:
+
+\`\`\`
+[YOUR CODE HERE]
+\`\`\`
+
+Please create:
+1. **Function/Class documentation** - Purpose, parameters, return values
+2. **Usage examples** - How to use this code
+3. **Integration guide** - How it fits into larger systems
+4. **Configuration options** - Available settings and defaults
+5. **Error handling** - What exceptions it throws and why
+6. **Performance notes** - Any performance considerations
+
+Format as clear, professional documentation.`,
+
+    'optimize-performance': `Optimize this code for better performance:
+
+\`\`\`
+[YOUR CODE HERE]
+\`\`\`
+
+Please analyze and improve:
+1. **Time complexity** - Reduce Big O complexity where possible
+2. **Memory usage** - Minimize memory allocations and leaks
+3. **Algorithm efficiency** - Use more efficient algorithms/data structures
+4. **Caching opportunities** - Add memoization or caching where beneficial
+5. **I/O optimization** - Reduce database queries, API calls, file operations
+
+Provide the optimized code with explanations of improvements made.`,
+
+    'add-error-handling': `Add comprehensive error handling to this code:
+
+\`\`\`
+[YOUR CODE HERE]
+\`\`\`
+
+Please add:
+1. **Input validation** - Check for null, undefined, invalid types
+2. **Try-catch blocks** - Handle exceptions gracefully  
+3. **Error messages** - Clear, actionable error descriptions
+4. **Fallback behavior** - What to do when things fail
+5. **Logging** - Appropriate error logging for debugging
+
+Return the improved code with proper error handling.`,
+
+    'generate-unit-tests': `Generate comprehensive unit tests for this code:
+
+\`\`\`
+[YOUR CODE HERE]
+\`\`\`
+
+Please create tests that cover:
+1. **Happy path scenarios** - Normal functionality with valid inputs
+2. **Edge cases** - Boundary conditions, empty inputs, null values
+3. **Error cases** - Invalid inputs, exception scenarios
+4. **Mock dependencies** - External APIs, databases, file systems
+5. **Assertions** - Verify outputs, side effects, and behavior
+
+Use [Jest/Mocha/Pytest/JUnit - specify your framework] testing framework.`,
+
+    'add-typescript-types': `Convert this JavaScript code to TypeScript with proper typing:
+
+\`\`\`
+[YOUR CODE HERE]
+\`\`\`
+
+Please add:
+1. **Interface definitions** - For objects and function parameters
+2. **Type annotations** - For variables, parameters, and return types
+3. **Generic types** - Where appropriate for reusability
+4. **Union types** - For values that can be multiple types
+5. **Strict type checking** - Ensure no 'any' types unless necessary
+
+Return fully typed TypeScript code with interface definitions.`,
+
+    'convert-to-async': `Convert this code to use async/await instead of callbacks or Promise chains:
+
+\`\`\`
+[YOUR CODE HERE]
+\`\`\`
+
+Please:
+1. **Replace callbacks** with async/await patterns
+2. **Simplify Promise chains** using sequential async calls
+3. **Add proper error handling** with try/catch blocks
+4. **Maintain parallelism** where operations can run concurrently
+5. **Improve readability** while preserving the same functionality
+
+Return clean, modern async/await code.`,
+
+    'add-logging': `Add comprehensive logging to this code:
+
+\`\`\`
+[YOUR CODE HERE]
+\`\`\`
+
+Please add:
+1. **Entry/exit logging** - Function start and completion
+2. **Error logging** - All error conditions with context
+3. **Performance logging** - Execution time for important operations
+4. **Business logic logging** - Key decisions and state changes
+5. **Structured logging** - Use consistent format with metadata
+
+Use appropriate log levels (debug, info, warn, error) and include relevant context.`
+  };
+
+  const promptText = promptLibrary[promptId];
+  
+  if (promptText) {
+    navigator.clipboard.writeText(promptText).then(() => {
+      showSuccessMessage(promptId);
+    }).catch(() => {
+      // Fallback for browsers that don't support clipboard API
+      showPromptModal(promptId, promptText);
+    });
+  } else {
+    console.error('Prompt not found:', promptId);
+  }
+}
+
+function showSuccessMessage(promptId) {
+  const notification = document.createElement('div');
+  notification.className = 'copy-notification';
+  notification.innerHTML = `
+    <div class="notification-content">
+      ✅ <strong>Prompt copied!</strong><br>
+      <small>Open GitHub Copilot Chat (Ctrl+Shift+I) and paste to use</small>
+    </div>
+  `;
+  
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #22c55e;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    animation: slideInRight 0.3s ease-out;
+    max-width: 300px;
+  `;
+  
+  document.body.appendChild(notification);
   
   setTimeout(() => {
-    btn.textContent = originalText;
-    btn.style.background = '';
-  }, 2000);
+    notification.style.animation = 'slideOutRight 0.3s ease-in';
+    setTimeout(() => notification.remove(), 300);
+  }, 3000);
+}
+
+function showPromptModal(promptId, promptText) {
+  const modal = document.createElement('div');
+  modal.className = 'prompt-text-modal';
+  modal.innerHTML = `
+    <div class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Copy Prompt Text</h3>
+          <button onclick="closePromptModal()" class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <textarea readonly id="promptTextArea">${promptText}</textarea>
+          <div class="modal-actions">
+            <button onclick="selectAllText()" class="btn-select">Select All</button>
+            <button onclick="closePromptModal()" class="btn-close">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
   
-  // Simulate copying to clipboard
-  navigator.clipboard.writeText(`Prompt for ${promptId} copied to clipboard!`);
+  document.body.appendChild(modal);
+}
+
+function closePromptModal() {
+  const modal = document.querySelector('.prompt-text-modal');
+  if (modal) modal.remove();
+}
+
+function selectAllText() {
+  const textarea = document.getElementById('promptTextArea');
+  textarea.select();
+  textarea.setSelectionRange(0, 99999); // For mobile devices
 }
 
 function openInVSCode(promptId) {
-  // Open the built-in AI playground with this prompt
-  openAIPlayground(promptId);
+  // Simply copy the prompt to clipboard
+  copyPromptQuick(promptId);
 }
 
 function openAIPlayground(promptId) {
@@ -944,34 +1353,71 @@ document.head.appendChild(style);
   line-height: 1;
 }
 
-.ai-playground-banner {
+.usage-banner {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 3rem 2rem;
+  padding: 2rem;
   border-radius: 12px;
-  text-align: center;
   margin: 3rem 0;
 }
 
-.playground-content h3 {
-  margin: 0 0 1rem 0;
+.usage-content h3 {
+  margin: 0 0 1.5rem 0;
   font-size: 1.5rem;
+  text-align: center;
 }
 
-.btn-install {
-  padding: 1rem 2rem;
+.usage-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.usage-step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.step-num {
   background: white;
   color: #667eea;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: transform 0.2s;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.875rem;
+  flex-shrink: 0;
 }
 
-.btn-install:hover {
-  transform: translateY(-2px);
+.usage-step span:last-child {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.usage-step kbd {
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  font-family: monospace;
+}
+
+.usage-note {
+  text-align: center;
+  margin: 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+  font-style: italic;
 }
 
 /* Modal Styles */
@@ -1146,6 +1592,28 @@ document.head.appendChild(style);
   to { 
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
   }
 }
 
@@ -1380,6 +1848,10 @@ document.head.appendChild(style);
   .playground-modal {
     width: 98%;
     max-height: 95vh;
+  }
+  
+  .usage-steps {
+    grid-template-columns: 1fr;
   }
 }
 </style>
